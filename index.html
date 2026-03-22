@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ReviveAI — Recover Lost Revenue From Your Dead Email List</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        fontFamily: { inter: ['Inter', 'sans-serif'] },
+        colors: {
+          brand: {
+            50:  '#f0f4ff',
+            100: '#e0eaff',
+            200: '#c7d7fd',
+            300: '#a5bcfb',
+            400: '#8197f8',
+            500: '#6272f3',
+            600: '#4f56e8',
+            700: '#4244cc',
+            800: '#3638a4',
+            900: '#303482',
+          }
+        }
+      }
+    }
+  }
+</script>
+<style>
+  * { font-family: 'Inter', sans-serif; }
+  .gradient-text {
+    background: linear-gradient(135deg, #4f56e8 0%, #8197f8 50%, #a78bfa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-gradient {
+    background: radial-gradient(ellipse 80% 60% at 50% -10%, rgba(99,114,243,0.12) 0%, transparent 70%);
+  }
+  .card-hover {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px -10px rgba(79,86,232,0.15);
+  }
+  .btn-primary {
+    background: linear-gradient(135deg, #4f56e8, #6272f3);
+    transition: all 0.2s ease;
+    box-shadow: 0 4px 20px rgba(79,86,232,0.35);
+  }
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px rgba(79,86,232,0.45);
+  }
+  .btn-outline {
+    transition: all 0.2s ease;
+  }
+  .btn-outline:hover {
+    background: #f0f4ff;
+    transform: translateY(-2px);
+  }
+  .step-line::after {
+    content: '';
+    position: absolute;
+    top: 28px;
+    left: calc(50% + 28px);
+    width: calc(100% - 56px);
+    height: 2px;
+    background: linear-gradient(90deg, #c7d7fd, #e0eaff);
+  }
+  @media (max-width: 768px) {
+    .step-line::after { display: none; }
+  }
+  .noise {
+    position: relative;
+  }
+  .noise::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.02'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    border-radius: inherit;
+  }
+  .stat-card {
+    background: white;
+    border: 1px solid #e8ecff;
+    box-shadow: 0 4px 24px rgba(79,86,232,0.07);
+  }
+  .pricing-card {
+    background: linear-gradient(145deg, #1e1f3a, #2a2d5c);
+    box-shadow: 0 24px 64px rgba(0,0,0,0.25), 0 0 0 1px rgba(255,255,255,0.06);
+  }
+  .badge {
+    background: linear-gradient(135deg, #e0eaff, #f0f4ff);
+    color: #4f56e8;
+    border: 1px solid #c7d7fd;
+  }
+  .faq-item {
+    transition: background 0.15s ease;
+  }
+  .faq-item:hover {
+    background: #f8faff;
+  }
+</style>
+</head>
+<body class="bg-white text-gray-900 antialiased">
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-xl border-b border-gray-100">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+    <div class="flex items-center gap-2">
+      <div class="w-8 h-8 rounded-lg btn-primary flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="white" stroke="white" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="font-bold text-lg tracking-tight">ReviveAI</span>
+    </div>
+    <div class="hidden md:flex items-center gap-8">
+      <a href="#how-it-works" class="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium">How It Works</a>
+      <a href="#why-it-works" class="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium">Why It Works</a>
+      <a href="#pricing" class="text-sm text-gray-500 hover:text-gray-900 transition-colors font-medium">Pricing</a>
+    </div>
+    <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer"
+       class="btn-primary text-white text-sm font-semibold px-5 py-2.5 rounded-xl">
+      Book a Demo
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-gradient pt-32 pb-24 px-6 overflow-hidden relative">
+  <div class="absolute inset-0 pointer-events-none">
+    <div class="absolute top-20 left-1/4 w-96 h-96 bg-brand-100 rounded-full blur-3xl opacity-30"></div>
+    <div class="absolute top-40 right-1/4 w-64 h-64 bg-purple-100 rounded-full blur-3xl opacity-20"></div>
+  </div>
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <div class="inline-flex items-center gap-2 badge text-xs font-semibold px-4 py-2 rounded-full mb-8">
+      <span class="w-1.5 h-1.5 rounded-full bg-brand-500 animate-pulse"></span>
+      Performance-Based Revenue Recovery
+    </div>
+    <h1 class="text-5xl md:text-7xl font-black leading-[1.08] tracking-tight mb-6">
+      Recover Lost Revenue<br/>
+      <span class="gradient-text">From Your Dead</span><br/>
+      Email List
+    </h1>
+    <p class="text-xl md:text-2xl text-gray-500 font-normal max-w-2xl mx-auto mb-10 leading-relaxed">
+      ReviveAI turns inactive subscribers into paying customers —<br class="hidden md:block" />
+      and you <strong class="text-gray-700 font-semibold">only pay when you make money.</strong>
+    </p>
+    <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+      <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer"
+         class="btn-primary text-white font-bold text-base px-8 py-4 rounded-2xl w-full sm:w-auto text-center">
+        Book a Demo →
+      </a>
+      <a href="#how-it-works"
+         class="btn-outline border border-gray-200 text-gray-700 font-semibold text-base px-8 py-4 rounded-2xl w-full sm:w-auto text-center">
+        See How It Works
+      </a>
+    </div>
+    <p class="text-sm text-gray-400 mt-5">No setup fee. No monthly retainer. Zero upfront risk.</p>
+
+    <!-- Social Proof Stats -->
+    <div class="grid grid-cols-3 gap-4 mt-16 max-w-xl mx-auto">
+      <div class="stat-card rounded-2xl px-4 py-5">
+        <div class="text-2xl md:text-3xl font-black text-gray-900">3.4x</div>
+        <div class="text-xs text-gray-500 mt-1 font-medium">Avg. revenue<br/>multiplier</div>
+      </div>
+      <div class="stat-card rounded-2xl px-4 py-5">
+        <div class="text-2xl md:text-3xl font-black text-gray-900">$0</div>
+        <div class="text-xs text-gray-500 mt-1 font-medium">Upfront cost<br/>to you</div>
+      </div>
+      <div class="stat-card rounded-2xl px-4 py-5">
+        <div class="text-2xl md:text-3xl font-black text-gray-900">48h</div>
+        <div class="text-xs text-gray-500 mt-1 font-medium">To first<br/>campaign live</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="bg-gray-50 py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center gap-2 badge text-xs font-semibold px-4 py-2 rounded-full mb-4">
+        Simple Process
+      </div>
+      <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">How It Works</h2>
+      <p class="text-lg text-gray-500 max-w-lg mx-auto">Four steps from a stale list to a stream of recovered revenue.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+
+      <div class="card-hover bg-white rounded-3xl p-7 border border-gray-100 shadow-sm relative step-line text-center md:text-left">
+        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1M12 4v12m0-12L8 8m4-4l4 4" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold text-brand-500 mb-2 tracking-widest uppercase">Step 01</div>
+        <h3 class="font-bold text-lg mb-2 leading-snug">Upload Your List</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Drop your old .CSV email list into our secure portal. It takes under two minutes.</p>
+      </div>
+
+      <div class="card-hover bg-white rounded-3xl p-7 border border-gray-100 shadow-sm relative step-line text-center md:text-left">
+        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M9 12h6M9 16h4" stroke="#4f56e8" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold text-brand-500 mb-2 tracking-widest uppercase">Step 02</div>
+        <h3 class="font-bold text-lg mb-2 leading-snug">We Clean &amp; Analyze</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Our AI scrubs duplicates, identifies segments, and maps the highest-value reactivation opportunities.</p>
+      </div>
+
+      <div class="card-hover bg-white rounded-3xl p-7 border border-gray-100 shadow-sm relative step-line text-center md:text-left">
+        <div class="w-14 h-14 bg-brand-50 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold text-brand-500 mb-2 tracking-widest uppercase">Step 03</div>
+        <h3 class="font-bold text-lg mb-2 leading-snug">AI Runs Campaigns</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Hyper-personalized reactivation sequences go live. Our AI tests, optimizes, and scales what converts.</p>
+      </div>
+
+      <div class="card-hover bg-white rounded-3xl p-7 border border-gray-100 shadow-sm text-center md:text-left">
+        <div class="w-14 h-14 bg-green-50 rounded-2xl flex items-center justify-center mb-5 mx-auto md:mx-0">
+          <svg width="24" height="24" fill="none" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z" fill="none"/>
+            <path d="M12 8v4l3 3" stroke="#16a34a" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="12" cy="12" r="9" stroke="#16a34a" stroke-width="2"/>
+            <path d="M9 12l2 2 4-4" stroke="#16a34a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="text-xs font-bold text-green-600 mb-2 tracking-widest uppercase">Step 04</div>
+        <h3 class="font-bold text-lg mb-2 leading-snug">You Generate Revenue</h3>
+        <p class="text-gray-500 text-sm leading-relaxed">Watch dormant leads convert into paying customers. You keep 80% of every dollar recovered.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- WHY IT WORKS -->
+<section id="why-it-works" class="py-24 px-6 bg-white">
+  <div class="max-w-5xl mx-auto">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 badge text-xs font-semibold px-4 py-2 rounded-full mb-6">
+          The Edge
+        </div>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-6 leading-tight">
+          Why ReviveAI<br/><span class="gradient-text">Actually Works</span>
+        </h2>
+        <p class="text-gray-500 text-lg leading-relaxed mb-8">
+          Most businesses already have the asset they need to grow — they're just leaving it dormant. Your email list is a gold mine. We have the tools to dig it.
+        </p>
+        <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer"
+           class="btn-primary inline-block text-white font-bold text-base px-7 py-3.5 rounded-2xl">
+          Book Your Free Demo →
+        </a>
+      </div>
+      <div class="flex flex-col gap-4">
+
+        <div class="card-hover flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+              <path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2" stroke="#4f56e8" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="9" cy="7" r="4" stroke="#4f56e8" stroke-width="2"/>
+              <path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75" stroke="#4f56e8" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-1">No New Leads Required</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We monetize contacts you already own. Zero ad spend, zero outbound hustle.</p>
+          </div>
+        </div>
+
+        <div class="card-hover flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-1">AI-Powered Personalization</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Every message is tailored by our models — right message, right person, right time.</p>
+          </div>
+        </div>
+
+        <div class="card-hover flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-1">Proven Reactivation Strategies</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">Built on data from thousands of campaigns across industries and list sizes.</p>
+          </div>
+        </div>
+
+        <div class="card-hover flex items-start gap-4 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+          <div class="w-10 h-10 rounded-xl bg-brand-50 flex items-center justify-center flex-shrink-0">
+            <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+              <path d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h4 class="font-bold text-gray-900 mb-1">Fully Managed Service</h4>
+            <p class="text-gray-500 text-sm leading-relaxed">We handle everything end-to-end. You sit back, watch the dashboard, and collect revenue.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOCIAL PROOF BANNER -->
+<section class="py-10 bg-brand-600 overflow-hidden">
+  <div class="max-w-5xl mx-auto px-6">
+    <div class="flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
+      <p class="text-white/80 text-sm font-medium uppercase tracking-widest">Trusted by growing businesses</p>
+      <div class="flex flex-wrap items-center justify-center md:justify-end gap-8">
+        <div class="text-white/50 font-black text-xl tracking-tight">Ecom Brand</div>
+        <div class="text-white/50 font-black text-xl tracking-tight">SaaS Co.</div>
+        <div class="text-white/50 font-black text-xl tracking-tight">Info Media</div>
+        <div class="text-white/50 font-black text-xl tracking-tight">Agency Group</div>
+        <div class="text-white/50 font-black text-xl tracking-tight">Coach Hub</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-24 px-6 bg-gray-50">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="inline-flex items-center gap-2 badge text-xs font-semibold px-4 py-2 rounded-full mb-6">
+      Transparent Pricing
+    </div>
+    <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-4">No Upfront Risk</h2>
+    <p class="text-lg text-gray-500 mb-12 max-w-xl mx-auto">We put our money where our mouth is. If you don't make money, we don't make money. It's that simple.</p>
+
+    <div class="pricing-card noise rounded-3xl p-10 md:p-14 relative overflow-hidden">
+      <div class="absolute top-0 right-0 w-72 h-72 bg-brand-500 rounded-full blur-3xl opacity-10 -translate-y-1/2 translate-x-1/2"></div>
+      <div class="relative z-10">
+        <div class="inline-flex items-center gap-2 bg-white/10 text-white/80 text-xs font-bold px-4 py-2 rounded-full mb-6 border border-white/10">
+          ⚡ Performance-Based Only
+        </div>
+        <div class="flex items-end justify-center gap-2 mb-4">
+          <span class="text-7xl md:text-8xl font-black text-white leading-none">20%</span>
+          <span class="text-white/60 text-lg mb-3">of recovered<br/>revenue</span>
+        </div>
+        <p class="text-white/60 text-base mb-10 max-w-md mx-auto leading-relaxed">
+          We take 20% of the revenue we generate from your dormant list. That's it. No setup fees, no monthly retainers, no hidden costs.
+        </p>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+            <div class="text-2xl mb-1">🚫</div>
+            <div class="text-white font-semibold text-sm">No Setup Fee</div>
+            <div class="text-white/50 text-xs mt-1">We get to work immediately</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+            <div class="text-2xl mb-1">🚫</div>
+            <div class="text-white font-semibold text-sm">No Monthly Retainer</div>
+            <div class="text-white/50 text-xs mt-1">Pay only on results</div>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-2xl p-4">
+            <div class="text-2xl mb-1">🚫</div>
+            <div class="text-white font-semibold text-sm">No Long Contracts</div>
+            <div class="text-white/50 text-xs mt-1">Cancel anytime, no risk</div>
+          </div>
+        </div>
+        <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer"
+           class="inline-block bg-white text-brand-700 font-bold text-base px-10 py-4 rounded-2xl hover:bg-brand-50 transition-all hover:-translate-y-1 shadow-lg">
+          Book a Demo — It's Free →
+        </a>
+        <p class="text-white/40 text-xs mt-4">30-minute call. No sales pressure. Just results.</p>
+      </div>
+    </div>
+
+    <!-- Example math -->
+    <div class="mt-10 bg-white border border-gray-100 rounded-2xl p-8 shadow-sm text-left">
+      <h4 class="font-bold text-gray-900 mb-5 text-center text-lg">Example: What This Looks Like for You</h4>
+      <div class="space-y-3">
+        <div class="flex justify-between items-center py-3 border-b border-gray-50">
+          <span class="text-gray-600 text-sm">Your dormant email list</span>
+          <span class="font-semibold text-gray-900">10,000 subscribers</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-50">
+          <span class="text-gray-600 text-sm">Average reactivation rate</span>
+          <span class="font-semibold text-gray-900">3–8%</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-50">
+          <span class="text-gray-600 text-sm">Revenue generated</span>
+          <span class="font-semibold text-gray-900">$15,000 – $40,000</span>
+        </div>
+        <div class="flex justify-between items-center py-3 border-b border-gray-50">
+          <span class="text-gray-600 text-sm">ReviveAI takes (20%)</span>
+          <span class="font-semibold text-gray-500">$3,000 – $8,000</span>
+        </div>
+        <div class="flex justify-between items-center py-3">
+          <span class="text-gray-900 font-bold">You keep</span>
+          <span class="font-black text-green-600 text-xl">$12,000 – $32,000</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="py-20 px-6 bg-white">
+  <div class="max-w-2xl mx-auto">
+    <div class="text-center mb-12">
+      <h2 class="text-3xl md:text-4xl font-black tracking-tight mb-3">Common Questions</h2>
+      <p class="text-gray-500">Everything you need to know before booking a call.</p>
+    </div>
+    <div class="space-y-2">
+
+      <div class="faq-item border border-gray-100 rounded-2xl p-6">
+        <h4 class="font-bold text-gray-900 mb-2">How old can my email list be?</h4>
+        <p class="text-gray-500 text-sm leading-relaxed">We've successfully reactivated lists that haven't been emailed in 3+ years. The older the list, the more opportunity there often is — our AI knows how to warm them up correctly.</p>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl p-6">
+        <h4 class="font-bold text-gray-900 mb-2">What size list do I need?</h4>
+        <p class="text-gray-500 text-sm leading-relaxed">We work best with lists of 2,000+ subscribers. The larger the list, the more revenue potential we can unlock for you.</p>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl p-6">
+        <h4 class="font-bold text-gray-900 mb-2">Will this damage my domain reputation?</h4>
+        <p class="text-gray-500 text-sm leading-relaxed">No. We use a careful warming process with dedicated infrastructure, ensuring your primary domain is never at risk. Deliverability is our #1 technical priority.</p>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl p-6">
+        <h4 class="font-bold text-gray-900 mb-2">How do you track revenue attribution?</h4>
+        <p class="text-gray-500 text-sm leading-relaxed">We integrate with your store or CRM to track every conversion tied to our campaigns. Full transparency — you see exactly what we generated before we invoice anything.</p>
+      </div>
+
+      <div class="faq-item border border-gray-100 rounded-2xl p-6">
+        <h4 class="font-bold text-gray-900 mb-2">How quickly will I see results?</h4>
+        <p class="text-gray-500 text-sm leading-relaxed">Most clients see first conversions within 7–14 days of campaign launch. We move fast — your list is analyzed and campaigns are live within 48 hours of onboarding.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="py-24 px-6 bg-gray-50">
+  <div class="max-w-3xl mx-auto text-center">
+    <div class="bg-white rounded-3xl border border-gray-100 shadow-xl p-12 md:p-16 relative overflow-hidden">
+      <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-brand-400 via-brand-600 to-purple-500"></div>
+      <div class="absolute bottom-0 right-0 w-64 h-64 bg-brand-50 rounded-full blur-3xl -translate-x-1/2 translate-y-1/2 opacity-50"></div>
+      <div class="relative z-10">
+        <div class="text-5xl mb-5">💰</div>
+        <h2 class="text-4xl md:text-5xl font-black tracking-tight mb-5 leading-tight">
+          You're Sitting on<br/><span class="gradient-text">Untapped Revenue</span>
+        </h2>
+        <p class="text-gray-500 text-lg mb-8 max-w-xl mx-auto leading-relaxed">
+          Every day your list sits cold is money left on the table. Book a free 30-minute demo and we'll show you exactly how much we can recover — before you commit to anything.
+        </p>
+        <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer"
+           class="btn-primary inline-block text-white font-bold text-lg px-10 py-5 rounded-2xl mb-4">
+          See How Much You Can Recover →
+        </a>
+        <p class="text-gray-400 text-sm">Free strategy call · No pitch · No obligation</p>
+        <div class="flex items-center justify-center gap-6 mt-8 pt-8 border-t border-gray-100">
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Zero upfront cost
+          </div>
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Pay only on results
+          </div>
+          <div class="flex items-center gap-2 text-gray-500 text-sm">
+            <svg width="16" height="16" fill="none" viewBox="0 0 24 24">
+              <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" stroke="#4f56e8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            Live in 48 hours
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="bg-white border-t border-gray-100 py-10 px-6">
+  <div class="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+    <div class="flex items-center gap-2">
+      <div class="w-7 h-7 rounded-lg btn-primary flex items-center justify-center">
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
+          <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="white" stroke="white" stroke-width="1" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <span class="font-bold text-gray-900">ReviveAI</span>
+    </div>
+    <p class="text-gray-400 text-sm">© 2025 ReviveAI. All rights reserved.</p>
+    <div class="flex gap-6">
+      <a href="#" class="text-gray-400 hover:text-gray-600 text-sm transition-colors">Privacy</a>
+      <a href="#" class="text-gray-400 hover:text-gray-600 text-sm transition-colors">Terms</a>
+      <a href="[PASTE YOUR CALENDLY LINK HERE]" target="_blank" rel="noopener noreferrer" class="text-brand-600 hover:text-brand-700 text-sm font-semibold transition-colors">Book a Demo</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
